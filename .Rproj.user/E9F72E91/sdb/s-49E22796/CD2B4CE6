@@ -1,0 +1,16 @@
+{
+    "contents" : "# First Step\n# for a given set of parameters, this function gives you \n# the GARCH likelihood, fitted residuals, and volatility\ngarchOut <- function(a) {\n  return(a + 1)\n}",
+    "created" : 1398841292738.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3799311047",
+    "id" : "CD2B4CE6",
+    "lastKnownWriteTime" : 1398841341,
+    "path" : "~/Google Drive/ECON 371/SieveGarchCop/pfh/garchOut.R",
+    "project_path" : "garchOut.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

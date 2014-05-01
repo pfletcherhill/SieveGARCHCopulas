@@ -1,0 +1,17 @@
+{
+    "contents" : "# Paul Fletcher-Hill\n# Sieve-GARCH\n# April 2014\n\n# Packages\nlibrary(fBasics)\nlibrary(fGarch)\nlibrary(np)\nlibrary(splines)\n\n# Sources\nsource(\"./repmat.R\")\nsource(\"./garchOut.R\")\nsource(\"./data.R\") # stock, mbs, bond\nsource(\"./bspline.R\")\n\n# Main Function\n# Setup options\noptions.display <- \"iter\"\noptions.tolFun <- 1e-6\noptions.tolX <- 1e-6\noptions.tolCon <- 1e-6\noptions.maxFunEvals <- 50000\noptions.maxIter <- 50000\noptions.algorithm <- \"sqp\"\n\n# Estimate standard GARCH(1,1)\nstock.garch <- garchFit(~garch(1,1), data=stock)\nstock.mu <- as.numeric(coef(stock.garch)['mu']) # c_i\nstock.omega <- as.numeric(coef(stock.garch)['omega']) # w_i\nstock.beta1 <- as.numeric(coef(stock.garch)['beta1']) # theta_i\nstock.alpha1 <- as.numeric(coef(stock.garch)['alpha1']) # gamma_i\n\nmbs.garch <- garchFit(~garch(1,1), data=mbs)\nbond.garch <- garchFit(~garch(1,1), data=bond)\n\n# Setup Sieve parameters for news impact curve estimation\nm <- 3\nj <- 2\n# Stock\nstock.max = floor(max(residuals(stock.garch)*2^j) + sd(residuals(stock.garch)*2^j))\nstock.min = min(floor(min(residuals(stock.garch)*2^j) - sd(residuals(stock.garch)*2^j)), 0)\nstock.ks = seq(stock.min, stock.max, 1) # stock.min ... stock.max\n\n# Quadratic initialization\np1 <- quantile(residuals(stock.garch)*2^j, .01)\np99 <- quantile(residuals(stock.garch)*2^j, .99)\nxq <- t(seq(p1, p99, .001))\nfq <- stock.alpha1*(xq^2) # Element-wise power\nbspline(xq, c(), stock.ks, j, m, 0)\n\nxq1 <- seq(p1, p99, .001)\nfq1 <- stock.alpha1*(xq^2)\nmod <- lm(fq1 ~ bs(xq1, knots=stock.ks))\n\n\n\n",
+    "created" : 1398840869457.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3916236554",
+    "id" : "40C93B66",
+    "lastKnownWriteTime" : 1398877116,
+    "path" : "~/Google Drive/ECON 371/SieveGarchCop/pfh/root.R",
+    "project_path" : "root.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

@@ -1,0 +1,17 @@
+{
+    "contents" : "# R equivalent of Matlab's repmat\nrepmat <- function(X, m, n) {\n  mx <- dim(X)[1]\n  nx <- dim(X)[2]\n  matrix(t(matrix(X,mx,nx*n)), mx*m, nx*n, byrow=T)\n}\n",
+    "created" : 1398874832275.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1105407426",
+    "id" : "E680A481",
+    "lastKnownWriteTime" : 1398875039,
+    "path" : "~/Google Drive/ECON 371/SieveGarchCop/pfh/repmat.R",
+    "project_path" : "repmat.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

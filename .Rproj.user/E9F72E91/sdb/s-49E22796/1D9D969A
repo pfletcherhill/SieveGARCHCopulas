@@ -1,0 +1,17 @@
+{
+    "contents" : "# Data\n# Date Range: March 20th, 2007 through December 31st, 2010\n\n# Fama-French Factor\nstock <- read.table(\"./data/fama-french.txt\", header=F)\nnames(stock) <- c(\"date\", \"mkt.rf\", \"smb\", \"hml\", \"rf\")\nstock <- stock$mkt.rf\n\n# Mortgage-backed security market returns\n# Barclay's MBS Index\nmbs <- read.table(\"./data/mbb.txt\", header=F)\nnames(mbs) <- c(\"index\")\nmbs <- log(mbs$index[-1]/mbs$index[-length(mbs$index)]) # Log Differences\n\n# Barclay's Bond Index\nbond <- read.table(\"./data/agg.txt\", header=F)\nnames(bond) <- c(\"index\")\nbond <- log(bond$index[-1]/bond$index[-length(bond$index)]) # Log Differences\n",
+    "created" : 1398845895950.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1723783572",
+    "id" : "1D9D969A",
+    "lastKnownWriteTime" : 1398846761,
+    "path" : "~/Google Drive/ECON 371/SieveGarchCop/pfh/data.R",
+    "project_path" : "data.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
